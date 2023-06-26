@@ -10,10 +10,14 @@ import {
 } from "react-router-dom";
 import App from "./App.jsx";
 
+import MainBody from "./Components/MainBody";
+
 const MainSection = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<App />}></Route>
+      <Route path="/" element={<App />}>
+        <Route index element={<MainBody />} />
+      </Route>
     </>
   )
 );
