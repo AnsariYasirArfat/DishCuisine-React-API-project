@@ -11,12 +11,16 @@ import {
 import App from "./App.jsx";
 
 import MainBody from "./Components/MainBody";
+import CategoryList from "./Components/CategoryList";
+import RecipePage from "./Components/RecipePage";
 
 const MainSection = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<App />}>
         <Route index element={<MainBody />} />
+        <Route path="category" element={<CategoryList />} />
+        <Route path="recipepage" element={<RecipePage />} />
       </Route>
     </>
   )

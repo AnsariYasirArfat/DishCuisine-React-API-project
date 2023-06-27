@@ -13,11 +13,11 @@ import {
 function ProductCard({ Product }) {
   return (
     <>
-      <Card className="bg-teal-50 hover:bg-white justify-between w-40 h-60 md:w-44 md:h-72 lg:w-56 lg:h-80 2xl:w-64 2xl:h-[352px] bg-opacity-[0.87] hover:bg-opacity-100 shadow-lg shadow-teal-900/60 hover:shadow-xl hover:shadow-teal-900/80 ">
+      <Card className="rounded-2xl bg-teal-50 hover:bg-white justify-between w-40 h-64 md:w-44 md:h-72 lg:w-56 lg:h-80 2xl:w-64 2xl:h-[352px] bg-opacity-[0.87] hover:bg-opacity-100 shadow-lg shadow-teal-900/60 hover:shadow-xl hover:shadow-teal-900/80 ">
         <CardHeader
           shadow={true}
           floated={false}
-          className="h-36 md:h-40 lg:h-48  2xl:h-56 m-1 lg:m-2"
+          className="h-36 md:h-40 lg:h-48  2xl:h-56 m-1 lg:m-2 lg:mb-0"
         >
           <NavLink to={`/recipepage`}>
             <img
@@ -26,21 +26,21 @@ function ProductCard({ Product }) {
             />
           </NavLink>
         </CardHeader>
-        <CardBody className="px-4 py-0 lg:px-5">
+        <CardBody className="p-0 lg:px-5 text-center ">
           <Typography
             color="teal"
-            className="text-xs md:text-sm lg:text-base font-semibold capitalize "
+            className="text-xs md:text-sm lg:text-base font-semibold capitalize"
           >
-            Mushroom soup with buckwheats
+            Mushroom soup with buckwheats soup.
           </Typography>
         </CardBody>
-        <CardFooter className="px-1 py-2 md:px-2 lg:p-3 ">
+        <CardFooter className="p-1 lg:p-2">
           <NavLink to={`/recipepage`}>
             <Button
               fullWidth={true}
-              className="text-[10px] md:text-[11px] lg:text-xs  2xl:text-sm p-0 bg-teal-100 text-teal-600 hover:shadow-none"
+              className="text-[10px] md:text-[11px] lg:text-xs rounded-xl 2xl:text-sm p-0 bg-teal-100 text-teal-600 hover:shadow-none"
             >
-              <div className="flex items-center justify-between px-2 py-2 ">
+              <div className="flex items-center justify-between p-2">
                 <Typography className="text-xs md:text-sm lg:text-base font-semibold text-teal-400 normal-case">
                   Category:
                 </Typography>

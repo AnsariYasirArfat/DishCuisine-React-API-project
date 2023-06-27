@@ -69,7 +69,7 @@ function NavListMenu() {
               className="hidden items-center gap-2 text-teal-600 lg:flex font-bold text-base lg:text-xl"
             >
               <img
-                src="https://img.icons8.com/ios-filled/50/home.png"
+                src="https://img.icons8.com/ios/50/home.png"
                 alt=""
                 className="h-[18px] w-[18px]"
               />
@@ -103,7 +103,7 @@ function NavListMenu() {
       <NavLink to="/">
         <MenuItem className="flex items-center gap-2 text-teal-600 lg:hidden font-bold text-base lg:text-xl">
           <img
-            src="https://img.icons8.com/ios-filled/50/home.png"
+            src="https://img.icons8.com/ios/50/home.png"
             alt=""
             className="h-[18px] w-[18px]"
           />
@@ -120,12 +120,12 @@ const navListItems = [
   {
     label: "Category",
     path: "category",
-    imgIcon: "https://img.icons8.com/ios-glyphs/30/category.png",
+    imgIcon: "https://img.icons8.com/ios/50/category.png",
   },
   {
     label: "Regional Recipes",
     path: "area",
-    imgIcon: "https://img.icons8.com/ios-filled/50/country.png",
+    imgIcon: "https://img.icons8.com/ios/50/country.png",
   },
 ];
 

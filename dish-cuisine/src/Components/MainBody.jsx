@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import PopularRecipes from "./PopularRecipes";
+
 import Banner from "../Assets/banner.jpg";
 import RecipeBook from "../Assets/RecipeBook.jpg";
 
@@ -26,7 +28,7 @@ function MainBody() {
               </Typography>
               <Typography
                 color="gray"
-                className="mt-2 md:mt-4 lg:mt-8 2xl:mt-14 float-right font-bold text-xs sm:text-sm md:text-lg lg:text-xl text-green-900"
+                className="mt-2 md:mt-6 lg:mt-10 2xl:mt-14 float-right font-bold text-xs sm:text-sm md:text-xl lg:text-2xl 2xl:text-3xl text-green-900"
               >
                 - Unleash Your Inner Chef.
               </Typography>
@@ -64,6 +66,7 @@ function MainBody() {
           <Link to="/">Read More</Link>
         </button>
       </section>
+      <PopularRecipes />
     </>
   );
 }
