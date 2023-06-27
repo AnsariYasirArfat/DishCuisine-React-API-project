@@ -10,28 +10,29 @@ import {
   CardFooter,
 } from "@material-tailwind/react";
 
-function ProductCard({ Product }) {
+function ProductCard({ data }) {
   return (
     <>
-      <Card className="rounded-2xl bg-teal-50 hover:bg-white justify-between w-40 h-64 md:w-44 md:h-72 lg:w-56 lg:h-80 2xl:w-64 2xl:h-[352px] bg-opacity-[0.87] hover:bg-opacity-100 shadow-lg shadow-teal-900/60 hover:shadow-xl hover:shadow-teal-900/80 ">
+      <Card className="rounded-2xl bg-teal-50 hover:bg-white justify-between w-40 h-64 md:w-44 md:h-72 lg:w-56 lg:h-80 2xl:w-64 2xl:h-[368px] bg-opacity-[0.87] hover:bg-opacity-100 shadow-lg shadow-teal-900/60 hover:shadow-xl hover:shadow-teal-900/80 ">
         <CardHeader
           shadow={true}
           floated={false}
-          className="h-36 md:h-40 lg:h-48  2xl:h-56 m-1 lg:m-2 lg:mb-0"
+          className="h-36 md:h-40 lg:h-48 2xl:h-56 m-1 lg:m-2 lg:mb-0"
         >
           <NavLink to={`/recipepage`}>
             <img
-              src={Product.Image}
-              className="w-full h-full object-center object-cover shadow-2xl shadow-teal-950/50 hover:scale-110 ease-in-out duration-100 "
+              src={data.strMealThumb}
+              alt="image"
+              className="w-full h-full object-center object-cover shadow-2xl shadow-teal-950/50 hover:scale-105 ease-in-out duration-500 "
             />
           </NavLink>
         </CardHeader>
-        <CardBody className="p-0 lg:px-5 text-center ">
+        <CardBody className="p-0 lg:px-5 text-center">
           <Typography
             color="teal"
-            className="text-xs md:text-sm lg:text-base font-semibold capitalize"
+            className="text-xs md:text-sm lg:text-[15px] 2xl:text-base font-semibold capitalize"
           >
-            Mushroom soup with buckwheats soup.
+            {data.strMeal}
           </Typography>
         </CardBody>
         <CardFooter className="p-1 lg:p-2">
@@ -48,7 +49,7 @@ function ProductCard({ Product }) {
                   color="teal"
                   className="text-[10.5px] md:text-xs lg:text-sm font-medium normal-case underline"
                 >
-                  Miscellaneous
+                  {data.strCategory}
                 </p>
               </div>
             </Button>
@@ -62,22 +63,5 @@ function ProductCard({ Product }) {
 export default ProductCard;
 
 ProductCard.propTypes = {
-  Product: PropTypes.object,
+  data: PropTypes.object,
 };
-
-// <CardFooter className="p-0  h-20">
-//   <NavLink to={`/productpage`}>
-//     <Button
-//       fullWidth={true}
-//       className="h-full rounded-t-none text-ellipsis overflow-hidden hover:text-clip whitespace-normal text-[10px] md:text-[11px] lg:text-xs 2xl:text-sm  p-0 bg-teal-100 text-teal-600 hover:shadow-none"
-//     >
-//       Mushroom soup with buckwheat soup soup soup soup soup soup soup
-//       soup soup soup soup soup soup soup soup soup buckw heat soup
-//       buckwheat
-//       {/* <ArrowLongRightIcon
-//         strokeWidth={2}
-//         className="w-3 md:w-4 lg:w-5"
-//       /> */}
-//     </Button>
-//   </NavLink>
-// </CardFooter>
