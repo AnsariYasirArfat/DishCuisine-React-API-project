@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PopularRecipes from "./PopularRecipes";
+import RandomRecipes from "./RandomRecipes";
 import productImage from "../Assets/product.jpg";
 import {
   Card,
@@ -65,7 +65,7 @@ function ProductPage() {
           )}
         </CardBody>
       </Card>
-      <PopularRecipes />
+      <RandomRecipes />
     </>
   );
 }

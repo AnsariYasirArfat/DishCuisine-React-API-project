@@ -3,7 +3,7 @@ import axios from "axios";
 import RecipeCard from "./RecipeCard";
 import RecipeCardLoader from "./RecipeCardLoader";
 
-function PopularRecipes() {
+function RandomRecipes() {
   const [popularRecipes, setPopularRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -55,4 +55,4 @@ function PopularRecipes() {
   );
 }
 
-export default PopularRecipes;
+export default RandomRecipes;

@@ -1,14 +1,38 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-import PopularRecipes from "./PopularRecipes";
+import axios from "axios";
+import RandomRecipes from "./RandomRecipes";
 
 import Banner from "../Assets/banner.jpg";
 import RecipeBook from "../Assets/RecipeBook.jpg";
 
 function MainBody() {
+  const [Categories, setCategories] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
+    async function getCategoryOfRecipeList() {
+      try {
+        const CategoryList = await axios.get(
+          `https://www.themealdb.com/api/json/v1/1/categories.php`
+        );
+        // Filter out unwanted categories
+        const filteredCategories = CategoryList.data.categories.filter(
+          (category) =>
+            category.strCategory !== "Pork" &&
+            category.strCategory !== "Beef" &&
+            category.strCategory !== "Lamb" &&
+            category.strCategory !== "Vegan" &&
+            category.strCategory !== "Goat"
+        );
+
+        console.log(filteredCategories);
+        setCategories(filteredCategories);
+      } catch (error) {
+        console.error("Error fetching recipes:", error);
+      }
+    }
+    getCategoryOfRecipeList();
   }, []);
 
   return (
@@ -66,7 +90,39 @@ function MainBody() {
           <Link to="/">Read More</Link>
         </button>
       </section>
-      <PopularRecipes />
+      <RandomRecipes />
+
+      {/* Categories of recipes Section */}
+      <section className="py-4 px-2 sm:px-5 lg:px-4 " id="categories">
+        <h2 className="pb-5 lg:pb-10 text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl  font-bold text-center text-teal-500">
+          Explore Delicious Recipe Categories
+        </h2>
+        <div className="grid justify-items-center gap-6 grid-cols-2 sm:grid-cols-3 sm:gap-y-10 md:grid-cols-3 2xl:grid-cols-4 2xl:gap-y-16 justify-center">
+          {Categories.map((Category) => (
+            <>
+              <figure className="rounded-2xl relative w-40 h-36 md:w-52 md:h-48 lg:w-64 lg:h-60 xl:w-72 xl:h-[272px]  bg-green-300 hover:scale-105">
+                <img
+                  className="rounded-2xl  h-full w-full m-auto object-center object-cover shadow-xl shadow-teal-900/50 opacity-90 hover:opacity-100"
+                  src={Category.strCategoryThumb}
+                  alt="nature image"
+                />
+                <Link
+                  to={{
+                    pathname: "/category",
+                    search: `?value=${Category.strCategory.toLowerCase()}`,
+                  }}
+                >
+                  <figcaption className="py-2 absolute bottom-4 left-2/4 flex w-4/5 -translate-x-2/4 justify-center rounded-xl border border-teal-800  bg-green-200 bg-opacity-70 hover:bg-opacity-100 hover:scale-[1.01] cursor-pointer">
+                    <Typography className="text-base lg:text-2xl font-bold text-teal-700">
+                      {Category.strCategory}
+                    </Typography>
+                  </figcaption>
+                </Link>
+              </figure>
+            </>
+          ))}
+        </div>
+      </section>
     </>
   );
 }

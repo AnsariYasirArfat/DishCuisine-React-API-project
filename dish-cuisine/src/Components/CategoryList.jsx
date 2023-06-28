@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import RecipeCard from "./RecipeCard";
 import {
@@ -9,14 +10,18 @@ import {
   TabPanel,
 } from "@material-tailwind/react";
 
-function ProductList() {
-  const [Category, setCategory] = useState("Breakfast");
+function CategoryList() {
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const valueFromQuery = query.get("value");
+  const [Category, setCategory] = useState(valueFromQuery || "breakfast");
   const [CategoryRecipes, setCategoryRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  console.log(valueFromQuery);
   useEffect(() => {
     window.scrollTo(0, 0);
-
+  }, []);
+  useEffect(() => {
     async function getCategoryRecipes() {
       try {
         setIsLoading(true);
@@ -47,6 +52,12 @@ function ProductList() {
       value: "breakfast",
       Recipes: CategoryRecipes,
     },
+
+    {
+      label: "Chicken",
+      value: "chicken",
+      Recipes: CategoryRecipes,
+    },
     {
       label: "Dessert",
       value: "dessert",
@@ -58,23 +69,13 @@ function ProductList() {
       Recipes: CategoryRecipes,
     },
     {
-      label: "Vegan",
-      value: "vegan",
-      Recipes: CategoryRecipes,
-    },
-    {
-      label: "Vegetarian",
-      value: "vegetarian",
-      Recipes: CategoryRecipes,
-    },
-    {
-      label: "Chicken",
-      value: "chicken",
-      Recipes: CategoryRecipes,
-    },
-    {
       label: "Side",
       value: "side",
+      Recipes: CategoryRecipes,
+    },
+    {
+      label: "Pasta",
+      value: "pasta",
       Recipes: CategoryRecipes,
     },
     {
@@ -83,13 +84,8 @@ function ProductList() {
       Recipes: CategoryRecipes,
     },
     {
-      label: "Goat",
-      value: "goat",
-      Recipes: CategoryRecipes,
-    },
-    {
-      label: "Pasta",
-      value: "pasta",
+      label: "Vegetarian",
+      value: "vegetarian",
       Recipes: CategoryRecipes,
     },
     {
@@ -110,7 +106,7 @@ function ProductList() {
       </div>
       <Tabs
         id="custom-animation"
-        value="breakfast"
+        value={valueFromQuery || "breakfast"}
         className="flex flex-col xl:flex-row py-4 "
       >
         <div className=" bg-teal-200 rounded-lg mx-4 mb-8 xl:mb-0 xl:mx-4 shadow-lg shadow-teal-900/60">
@@ -159,4 +155,4 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+export default CategoryList;

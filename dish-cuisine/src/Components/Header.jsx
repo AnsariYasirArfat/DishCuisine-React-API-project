@@ -24,8 +24,8 @@ const navListMenuItems = [
     path: "#latest",
   },
   {
-    title: "Category",
-    path: "#",
+    title: "Categories",
+    path: "#categories",
   },
   {
     title: "By initial",
