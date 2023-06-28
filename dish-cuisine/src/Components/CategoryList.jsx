@@ -105,7 +105,7 @@ function ProductList() {
     <section>
       <div>
         <h1 className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-bold text-center p-4 text-teal-800 capitalize">
-          Recipe List of: {Category}
+          {CategoryRecipes.length} {Category} Recipes:
         </h1>
       </div>
       <Tabs

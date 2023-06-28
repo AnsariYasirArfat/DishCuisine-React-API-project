@@ -186,10 +186,7 @@ function Header() {
   }, []);
 
   return (
-    <nav
-      id="header"
-      className="sticky top-0 z-50 w-full px-4 md:px-10 bg-teal-50 text-red-600"
-    >
+    <nav id="header" className=" w-full px-4 md:px-10 bg-teal-50 text-red-600">
       <div
         className="relative  flex justify-between items-center text-blue-gray-900"
         style={{ height: "12vh" }}
