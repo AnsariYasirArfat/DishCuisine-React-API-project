@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
+import RecipeCardLoader from "./RecipeCardLoader";
 
 import {
   Card,
@@ -11,6 +12,9 @@ import {
 } from "@material-tailwind/react";
 
 function ProductCard({ data }) {
+  if (!data) {
+    return <RecipeCardLoader />;
+  }
   return (
     <>
       <Card className="rounded-2xl bg-teal-50 hover:bg-white justify-between w-40 h-64 md:w-44 md:h-72 lg:w-56 lg:h-80 2xl:w-64 2xl:h-[368px] bg-opacity-[0.87] hover:bg-opacity-100 shadow-lg shadow-teal-900/60 hover:shadow-xl hover:shadow-teal-900/80 ">
@@ -22,7 +26,6 @@ function ProductCard({ data }) {
           <NavLink to={`/recipepage`}>
             <img
               src={data.strMealThumb}
-              alt="image"
               className="w-full h-full object-center object-cover shadow-2xl shadow-teal-950/50 hover:scale-105 ease-in-out duration-500 "
             />
           </NavLink>
