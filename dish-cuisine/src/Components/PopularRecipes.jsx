@@ -9,6 +9,8 @@ function PopularRecipes() {
   useEffect(() => {
     async function getRandomRecipes() {
       try {
+        setIsLoading(true);
+
         const recipes = [];
 
         for (let i = 0; i < 4; i++) {
@@ -19,7 +21,10 @@ function PopularRecipes() {
         }
 
         setPopularRecipes(recipes);
-        setIsLoading(false);
+        const timeout = setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
+        return () => clearTimeout(timeout);
       } catch (error) {
         console.error("Error fetching recipes:", error);
       }
@@ -42,7 +47,7 @@ function PopularRecipes() {
                 <RecipeCardLoader key={index} />
               ))
             : popularRecipes.map((recipe, index) => (
-                <RecipeCard key={index} data={recipe} />
+                <RecipeCard key={index} data={recipe} Loading={isLoading} />
               ))}
         </div>
       </section>

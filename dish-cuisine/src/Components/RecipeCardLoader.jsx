@@ -2,7 +2,7 @@ import ContentLoader from "react-content-loader";
 
 const RecipeCardLoader = () => (
   <ContentLoader
-    speed={2}
+    speed={0.5}
     // backgroundColor="#052e16"
     // foregroundColor="#052e16"
     backgroundColor="#dcfce7"
