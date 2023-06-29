@@ -98,7 +98,7 @@ function CategoryList() {
     setCategory(label || value);
   };
   return (
-    <section>
+    <section id="top">
       <div>
         <h1 className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-bold text-center p-4 text-teal-800 capitalize">
           {CategoryRecipes.length} {Category} Recipes:
@@ -139,7 +139,7 @@ function CategoryList() {
               id="ProductListWindow"
               key={value}
               value={value}
-              className="overflow-auto pt-0 pb-4 grid justify-items-center gap-6 grid-cols-2 sm:grid-cols-3 sm:gap-y-10 md:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4 2xl:gap-y-16 justify-center"
+              className="overflow-auto pt-0 pb-4 grid justify-items-center gap-6 grid-cols-2 sm:grid-cols-3 sm:gap-y-10 md:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4  justify-center"
               style={{ height: "680px" }}
             >
               {Recipes.map((recipe, index) => {

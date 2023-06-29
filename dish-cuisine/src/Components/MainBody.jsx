@@ -38,7 +38,10 @@ function MainBody() {
   return (
     <>
       {/* Banners' Section */}
-      <section className=" py-4 px-2 sm:px-5 lg:px-4 flex flex-col items-center lg:flex-row justify-between">
+      <section
+        id="top"
+        className=" py-4 px-2 sm:px-5 lg:px-4 flex flex-col items-center lg:flex-row justify-between"
+      >
         <figure className="relative h-96 lg:h-[500px] w-full p-1">
           <img
             className="h-full w-full m-auto object-left 2xl:object-center object-cover rounded-lg shadow-xl shadow-teal-900/50 opacity-90 hover:opacity-100"

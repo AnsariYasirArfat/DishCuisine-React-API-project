@@ -50,7 +50,7 @@ function RecipeCard({ data, Loading }) {
                   </Typography>
                   <p
                     color="teal"
-                    className="text-[10.5px] md:text-xs lg:text-sm font-medium normal-case underline"
+                    className="text-[10.5px] md:text-xs lg:text-sm font-medium capitalize underline"
                   >
                     {data.strCategory}
                   </p>

@@ -13,6 +13,7 @@ import App from "./App.jsx";
 import MainBody from "./Components/MainBody";
 import CategoryList from "./Components/CategoryList";
 import RecipePage from "./Components/RecipePage";
+import CountryList from "./Components/CountryList";
 
 const MainSection = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const MainSection = createBrowserRouter(
       <Route path="/" element={<App />}>
         <Route index element={<MainBody />} />
         <Route path="category" element={<CategoryList />} />
+        <Route path="area" element={<CountryList />} />
         <Route path="recipepage" element={<RecipePage />} />
       </Route>
     </>

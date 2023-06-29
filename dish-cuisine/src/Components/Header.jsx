@@ -29,7 +29,7 @@ const navListMenuItems = [
   },
   {
     title: "By initial",
-    path: "#",
+    path: "#byinitial",
   },
 ];
 
