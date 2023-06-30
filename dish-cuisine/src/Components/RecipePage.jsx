@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import RandomRecipes from "./RandomRecipes";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
@@ -145,75 +144,97 @@ function ProductPage() {
 
   return (
     <>
-      <Card className="flex-col items-center justify-center xl:flex-row m-4">
-        <CardHeader shadow={false} floated={false} className="w-60 xl:w-2/5">
-          <img
-            src={RecipesDetails.strMealThumb}
-            alt="image"
-            className="w-full h-full object-center object-cover hover:scale-105 ease-in-out duration-500"
-          />
-        </CardHeader>
-        <CardBody className="w-full xl:w-3/5">
-          <Typography className="text-xl font-extrabold mb-2">
+      <Card className="flex-col items-center justify-center lg:flex-row lg:items-start m-2">
+        <div>
+          <Typography className="text-xl md:text-2xl font-extrabold my-2  lg:my-8 text-center">
             {RecipesDetails.strMeal}
           </Typography>
-          <div className="flex justify-between">
-            <Typography className="text-base text-center">
+          <div className="flex justify-evenly mb-2">
+            <Typography className="text-sm font-bold text-center">
               Category: {RecipesDetails.strCategory}
             </Typography>
-            <Typography className="text-base text-center">
+            <Typography className="text-sm  font-bold text-center">
               Country: {RecipesDetails.strArea}
             </Typography>
           </div>
-          <Typography color="gray" className="font-normal mb-8">
-            {RecipesDetails.strInstructions}
-          </Typography>
-
-          {isWishlisted ? (
-            <Button
-              onClick={RemoveFromWishList}
-              className="w-40 md:w-48 xl:w-52 h-10 text-[9px] md:text-[11px] xl:text-xs md:py-3 bg-red-50 text-red-500 shadow-none"
-            >
-              Remove from WishList
-            </Button>
-          ) : (
-            <Button
-              onClick={AddedToWishList}
-              className="w-40 md:w-48 xl:w-52 h-10 text-[9px] md:text-[11px] xl:text-xs  md:py-3 bg-teal-100 text-teal-800 shadow-none"
-            >
-              Add to WishList
-            </Button>
-          )}
+          <CardHeader
+            shadow={false}
+            floated={false}
+            className="w-72 sm:w-80 md:w-96 "
+          >
+            <img
+              src={RecipesDetails.strMealThumb}
+              alt="image"
+              className="w-full h-full object-center object-cover hover:scale-105 ease-in-out duration-500"
+            />
+          </CardHeader>
+          <div className=" mt-4 xl:mt-10 flex justify-center">
+            {isWishlisted ? (
+              <Button
+                onClick={RemoveFromWishList}
+                className="w-40 md:w-48 xl:w-52 h-10 text-[9px] md:text-[11px] xl:text-xs md:py-3 bg-red-50 text-red-500 shadow-none"
+              >
+                Remove from WishList
+              </Button>
+            ) : (
+              <Button
+                onClick={AddedToWishList}
+                className="w-40 md:w-48 xl:w-52 h-10 text-[10px] md:text-[11px] xl:text-xs  md:py-3 bg-teal-100 text-teal-800 shadow-none"
+              >
+                Add to WishList
+              </Button>
+            )}
+          </div>
+        </div>
+        <CardBody className="p-2 w-full ">
+          <div className="my-6">
+            <h1 className="text-lg lg:text-xl font-bold text-center mb-4">
+              Recipe&apos;s Ingredients:
+            </h1>
+            <div className="grid justify-items-center gap-4 grid-cols-2 sm:grid-cols-3 sm:gap-y-8 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  2xl:gap-y-10 justify-center">
+              {ingredients.map(({ ingredient, quantity }, index) => {
+                if (!ingredient) {
+                  return null; // Skip rendering if ingredient is empty
+                }
+                return (
+                  <figure
+                    key={index}
+                    className="rounded-2xl relative w-36 h-36 md:w-40 md:h-40 xl:w-40 xl:h-40 2xl:w-44 2xl:-44 bg-green-300 hover:scale-[1.01]"
+                  >
+                    <img
+                      className="rounded-2xl p-2 h-full w-full m-auto object-center object-cover shadow-xl shadow-teal-900/50 opacity-90 hover:opacity-100"
+                      src={`https://www.themealdb.com/images/ingredients/${ingredient}.png`}
+                      alt=""
+                    />
+                    <figcaption className="p-1 lg:p-2 absolute bottom-4 left-2/4 flex w-4/5 -translate-x-2/4 justify-between items-center rounded-xl border border-teal-800 bg-green-200 bg-opacity-80">
+                      <Typography className="text-xs lg:text-sm font-bold text-teal-700">
+                        {ingredient}
+                      </Typography>
+                      <Typography className="text-[10px] lg:text-sx font-bold text-teal-700">
+                        {quantity}
+                      </Typography>
+                    </figcaption>
+                  </figure>
+                );
+              })}
+            </div>
+          </div>
         </CardBody>
       </Card>
-      <div className="grid justify-items-center gap-6 grid-cols-2 sm:grid-cols-3 sm:gap-y-10 md:grid-cols-3 2xl:grid-cols-4 2xl:gap-y-16 justify-center">
-        {ingredients.map(({ ingredient, quantity }, index) => {
-          if (!ingredient) {
-            return null; // Skip rendering if ingredient is empty
-          }
-          return (
-            <figure
-              key={index}
-              className="rounded-2xl relative w-40 h-36 md:w-52 md:h-48 lg:w-64 lg:h-60 xl:w-72 xl:h-[272px]  bg-green-300 hover:scale-105"
-            >
-              <img
-                className="rounded-2xl p-2 h-full w-full m-auto object-center object-cover shadow-xl shadow-teal-900/50 opacity-90 hover:opacity-100"
-                src={`https://www.themealdb.com/images/ingredients/${ingredient}.png`}
-                alt=""
-              />
-              <figcaption className="py-2 absolute bottom-4 left-2/4 flex w-4/5 -translate-x-2/4 justify-evenly rounded-xl border border-teal-800  bg-green-200 bg-opacity-70 hover:bg-opacity-100 hover:scale-[1.01] cursor-pointer">
-                <Typography className="text-base lg:text-2xl font-bold text-teal-700">
-                  {ingredient}
-                </Typography>
-                <Typography className="text-xs lg:text-xl font-bold text-teal-700">
-                  {quantity}
-                </Typography>
-              </figcaption>
-            </figure>
-          );
-        })}
-      </div>
-      <div className="w-full h-96">
+      <Card className="my-4 mx-2">
+        <CardBody shadow={false} floated={false}>
+          <div className="">
+            <h1 className="text-lg lg:text-xl font-bold mb-2 ">
+              Recipe&apos;s Instructions:
+            </h1>
+            <Typography color="gray" className="text-sm xl:text-base mb-8">
+              {RecipesDetails.strInstructions}
+            </Typography>
+          </div>
+        </CardBody>
+      </Card>
+      <div className="my-8 mx-auto w-[340px] h-56 md:w-[560px] md:h-80 lg:w-[740px] lg:h-[420px] xl:w-[920px] xl:h-[526px] 2xl:w-[1100px] 2xl:h-[630px]">
+        <h1 className="text-center font-semibold">Watch the recipe here:</h1>
         <iframe
           className="w-full h-full"
           src={`https://www.youtube.com/embed/${RecipesDetails.videoId}`}
@@ -222,7 +243,6 @@ function ProductPage() {
           allowfullscreen
         ></iframe>
       </div>
-      <RandomRecipes />
     </>
   );
 }
