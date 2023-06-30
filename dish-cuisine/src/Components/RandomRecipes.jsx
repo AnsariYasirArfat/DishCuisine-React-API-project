@@ -19,7 +19,7 @@ function RandomRecipes() {
           );
           recipes.push(randomRecipe.data.meals[0]);
         }
-
+        console.log(recipes);
         setPopularRecipes(recipes);
         const timeout = setTimeout(() => {
           setIsLoading(false);

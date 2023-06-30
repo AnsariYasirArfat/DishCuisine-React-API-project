@@ -23,7 +23,12 @@ function RecipeCard({ data, Loading }) {
             floated={false}
             className="h-36 md:h-40 lg:h-48 2xl:h-56 m-1 lg:m-2 lg:mb-0"
           >
-            <NavLink to={`/recipepage`}>
+            <NavLink
+              to={{
+                pathname: "/recipepage",
+                search: `?value=${data.idMeal}`,
+              }}
+            >
               <img
                 src={data.strMealThumb}
                 className="w-full h-full object-center object-cover shadow-2xl shadow-teal-950/50 hover:scale-105 ease-in-out duration-500 "
@@ -39,7 +44,12 @@ function RecipeCard({ data, Loading }) {
             </Typography>
           </CardBody>
           <CardFooter className="p-1 lg:p-2">
-            <NavLink to={`/recipepage`}>
+            <NavLink
+              to={{
+                pathname: "/recipepage",
+                search: `?value=${data.idMeal}`,
+              }}
+            >
               <Button
                 fullWidth={true}
                 className="text-[10px] md:text-[11px] lg:text-xs rounded-xl 2xl:text-sm p-0 bg-teal-100 text-teal-600 hover:shadow-none"
