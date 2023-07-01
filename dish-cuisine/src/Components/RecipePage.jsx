@@ -157,18 +157,14 @@ function ProductPage() {
               Country: {RecipesDetails.strArea}
             </Typography>
           </div>
-          <CardHeader
-            shadow={false}
-            floated={false}
-            className="w-72 sm:w-80 md:w-96 "
-          >
+          <CardHeader shadow={false} floated={false} className="w-72 sm:w-80  ">
             <img
               src={RecipesDetails.strMealThumb}
               alt="image"
               className="w-full h-full object-center object-cover hover:scale-105 ease-in-out duration-500"
             />
           </CardHeader>
-          <div className=" mt-4 xl:mt-10 flex justify-center">
+          <div className=" my-4 xl:mt-10 flex justify-center">
             {isWishlisted ? (
               <Button
                 onClick={RemoveFromWishList}
@@ -199,18 +195,18 @@ function ProductPage() {
                 return (
                   <figure
                     key={index}
-                    className="rounded-2xl relative w-36 h-36 md:w-40 md:h-40 xl:w-40 xl:h-40 2xl:w-44 2xl:-44 bg-green-300 hover:scale-[1.01]"
+                    className="rounded-2xl relative w-36 h-36 md:w-40 md:h-40  xl:w-44 xl:-44 bg-opacity-50 bg-green-300 hover:scale-[1.01]"
                   >
                     <img
                       className="rounded-2xl p-2 h-full w-full m-auto object-center object-cover shadow-xl shadow-teal-900/50 opacity-90 hover:opacity-100"
                       src={`https://www.themealdb.com/images/ingredients/${ingredient}.png`}
                       alt=""
                     />
-                    <figcaption className="p-1 lg:p-2 absolute bottom-4 left-2/4 flex w-4/5 -translate-x-2/4 justify-between items-center rounded-xl border border-teal-800 bg-green-200 bg-opacity-80">
-                      <Typography className="text-xs lg:text-sm font-bold text-teal-700">
+                    <figcaption className=" flex w-11/12 p-2 lg:p-2 absolute bottom-2 left-2/4  -translate-x-2/4 justify-between items-center rounded-xl border border-teal-800 bg-green-200 bg-opacity-50 hover:bg-opacity-100">
+                      <Typography className="text-xs lg:text-sm xl:text-lg font-bold text-teal-800 w-1/2">
                         {ingredient}
                       </Typography>
-                      <Typography className="text-[10px] lg:text-sx font-bold text-teal-700">
+                      <Typography className="text-[10px] lg:text-sx  xl:text-sm font-semibold text-teal-600 w-1/2 text-end">
                         {quantity}
                       </Typography>
                     </figcaption>
@@ -233,16 +229,24 @@ function ProductPage() {
           </div>
         </CardBody>
       </Card>
-      <div className="my-8 mx-auto w-[340px] h-56 md:w-[560px] md:h-80 lg:w-[740px] lg:h-[420px] xl:w-[920px] xl:h-[526px] 2xl:w-[1100px] 2xl:h-[630px]">
-        <h1 className="text-center font-semibold">Watch the recipe here:</h1>
-        <iframe
-          className="w-full h-full"
-          src={`https://www.youtube.com/embed/${RecipesDetails.videoId}`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
+      <Card className="my-4 mx-2">
+        <CardHeader shadow={false} floated={false} className="">
+          <h1 className="text-center font-semibold">Watch the recipe here:</h1>
+        </CardHeader>
+        <CardBody
+          shadow={false}
+          floated={false}
+          className="my-8 mx-auto w-[350px] h-56 sm:w-[490px] sm:h-[280px] md:w-[560px] md:h-80 lg:w-[740px] lg:h-[420px] xl:w-[920px] xl:h-[526px] 2xl:w-[1100px] 2xl:h-[630px]"
+        >
+          <iframe
+            className="w-full h-full"
+            src={`https://www.youtube.com/embed/${RecipesDetails.videoId}`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </CardBody>
+      </Card>
     </>
   );
 }
