@@ -3,6 +3,7 @@ import { Typography } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import RandomRecipes from "./RandomRecipes";
+import ByRecipesInitials from "./ByRecipesInitials";
 
 import Banner from "../Assets/banner.jpg";
 import RecipeBook from "../Assets/RecipeBook.jpg";
@@ -44,9 +45,9 @@ function MainBody() {
       >
         <figure className="relative h-96 lg:h-[500px] w-full p-1">
           <img
-            className="h-full w-full m-auto object-left 2xl:object-center object-cover rounded-lg shadow-xl shadow-teal-900/50 opacity-90 hover:opacity-100"
+            className="h-full w-full m-auto object-left 2xl:object-center object-cover rounded-xl shadow-xl shadow-teal-900/50 opacity-90 hover:opacity-100"
             src={Banner}
-            alt="nature image"
+            alt=""
           />
           <figcaption className="py-4 px-6 absolute bottom-4 left-2/4 -translate-x-2/4 w-11/12  md:w-2/4 md:h-64 lg:h-96 md:right-14 md:bottom-2/4 md:translate-y-2/4 md:-translate-x-0 md:left-auto  flex  justify-between rounded-xl bg-green-500 bg-opacity-40 hover:bg-opacity-50 cursor-pointer">
             <div className="my-auto">
@@ -64,7 +65,7 @@ function MainBody() {
         </figure>
       </section>
       {/* Welcome Section */}
-      <section className="my-4 mx-3 sm:mx-6 md:mx-8 lg:mx-5 py-6 bg-teal-400 rounded-md flex flex-col items-center">
+      <section className="my-4 mx-3 sm:mx-6 md:mx-8 lg:mx-5 py-6 bg-teal-400 rounded-xl flex flex-col items-center">
         <h2 className="pb-4 text-2xl md:text-3xl xl:text-4xl 2xl:text-4xl font-bold  text-teal-50">
           Welcome to Dish Cuisine
         </h2>
@@ -73,31 +74,28 @@ function MainBody() {
           <img
             className="w-[80%]  lg:w-1/3  opacity-90 hover:opacity-100 object-center object-cover rounded-lg shadow-2xl shadow-teal-950/50 "
             src={RecipeBook}
-            alt="Welcome Image"
+            alt=""
           />
           {/* Content Section */}
           <div className="md:ps-3 lg:ps-6 xl:ps-10 w-[80%] lg:w-2/3  flex flex-col items-center justify-around   ">
             <p className="py-4 text-xs sm:text-sm md:text-base 2xl:text-lg font-semibold  text-teal-100 ">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum
-              eveniet minus facilis ex alias cumque? Earum voluptas, excepturi
-              et, suscipit ducimus provident recusandae veniam quia veritatis,
-              rem distinctio dolores facilis ex alias cumque? Earum voluptas,
-              excepturi et, suscipit ducimus provident recusandae veniam quia
-              veritatis, rem distinctio dolores quodfacilis ex alias cumque?
-              Earum voluptas, excepturi et, suscipit ducimus provident
-              recusandae veniam quia veritatis, rem distinctio dolores quod!
+              &quot;Embark on an Epic Culinary Voyage with Dish Cuisine: Delight
+              Your Taste Buds with a World of Flavors! Uncover the Secrets of 7
+              Diverse Recipe Categories and Dive into the Exquisite Cuisines of
+              20 Countries. From Exotic Ingredients to Step-by-Step
+              Instructions, Mouthwatering Ingredients, and Captivating Recipe
+              Videos, Prepare to Indulge Your Senses in an Unforgettable
+              Gastronomic Adventure. Unleash Your Inner Chef and Discover the
+              Art of Global Cooking Today!&quot;
             </p>
           </div>
         </div>
-        <button className="mt-2 text-sm px-2 py-1 lg:px-3 lg:py-2 md:font-semibold bg-teal-100 text-teal-900   hover:text-teal-50 hover:bg-teal-700">
-          <Link to="/">Read More</Link>
-        </button>
       </section>
       <RandomRecipes />
 
       {/* Categories of recipes Section */}
       <section className="py-4 px-2 sm:px-5 lg:px-4 " id="categories">
-        <h2 className="pb-5 lg:pb-10 text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl  font-bold text-center text-teal-500">
+        <h2 className="pb-5 lg:pb-10 text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-center text-teal-500">
           Explore Delicious Recipe Categories
         </h2>
         <div className="grid justify-items-center gap-6 grid-cols-2 sm:grid-cols-3 sm:gap-y-10 md:grid-cols-3 2xl:grid-cols-4 2xl:gap-y-16 justify-center">
@@ -125,6 +123,13 @@ function MainBody() {
             </>
           ))}
         </div>
+      </section>
+
+      <section
+        className="py-4 px-1 sm:px-2 lg:px-0 my-4 mx-3 sm:mx-6 md:mx-8 lg:mx-2 bg-teal-400 rounded-xl "
+        id="byinitial"
+      >
+        <ByRecipesInitials />
       </section>
     </>
   );

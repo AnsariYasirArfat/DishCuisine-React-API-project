@@ -20,7 +20,7 @@ import mainLogo from "../Assets/mainLogo.png";
 // nav list menu
 const navListMenuItems = [
   {
-    title: "Latest Recipes",
+    title: "Random Recipes",
     path: "#latest",
   },
   {
@@ -125,7 +125,7 @@ const navListItems = [
   {
     label: "Regional Recipes",
     path: "area",
-    imgIcon: "https://img.icons8.com/ios/50/country.png",
+    imgIcon: "https://img.icons8.com/cotton/64/location--v2.png",
   },
 ];
 

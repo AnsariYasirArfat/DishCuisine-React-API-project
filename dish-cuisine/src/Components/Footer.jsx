@@ -5,18 +5,18 @@ import mainLogo from "../Assets/mainLogo.png";
 function Footer() {
   const LINKS = [
     {
-      title: "Home",
+      title: "Home ",
       items: [
-        { label: "Latest Recipes", path: "#latest" },
-        { label: "Category", path: "" },
-        { label: "By initial", path: "" },
+        { label: "Random Recipes", path: "#latest" },
+        { label: "Categories", path: "#categories" },
+        { label: "By Initials", path: "#byinitial" },
       ],
     },
     {
       title: "Company",
       items: [
         { label: "Category", path: "category" },
-        { label: "Regional Recipes", path: "/area" },
+        { label: "Regional Recipes", path: "area" },
       ],
     },
   ];
