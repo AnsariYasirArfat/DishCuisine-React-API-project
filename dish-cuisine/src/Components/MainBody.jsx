@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
-import { Typography } from "@material-tailwind/react";
+import { Typography, Input, Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import RandomRecipes from "./RandomRecipes";
 import ByRecipesInitials from "./ByRecipesInitials";
-
+import RecipeCard from "./RecipeCard";
 import Banner from "../Assets/banner.jpg";
 import RecipeBook from "../Assets/RecipeBook.jpg";
 
 function MainBody() {
   const [Categories, setCategories] = useState([]);
+  const [input, setInput] = useState("");
+  const [searchedRecipe, setSearchedRecipe] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     async function getCategoryOfRecipeList() {
@@ -26,7 +30,6 @@ function MainBody() {
             category.strCategory !== "Vegan" &&
             category.strCategory !== "Goat"
         );
-
         console.log(filteredCategories);
         setCategories(filteredCategories);
       } catch (error) {
@@ -36,6 +39,20 @@ function MainBody() {
     getCategoryOfRecipeList();
   }, []);
 
+  const handleSubmit = async (event) => {
+    setIsLoading(true);
+
+    event.preventDefault();
+    const searchedList = await axios.get(
+      `https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`
+    );
+    console.log("search meal", searchedList.data.meals);
+    setSearchedRecipe(searchedList.data.meals);
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  };
   return (
     <>
       {/* Banners' Section */}
@@ -91,6 +108,44 @@ function MainBody() {
           </div>
         </div>
       </section>
+      {/* Search Recipes Section */}
+      <section className="py-4 px-2 sm:px-5 lg:px-4" id="searchrecipe">
+        <h2 className="pb-5 lg:pb-10 text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-center text-teal-500">
+          Search your desired Meal:
+        </h2>
+        <div className="w-96 h-20 mx-auto">
+          <form onSubmit={handleSubmit} className="flex">
+            <Input
+              color="teal"
+              label="Search Your Meals"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="h-12"
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="teal"
+              className="h-12"
+            >
+              <img
+                width="30"
+                height="30"
+                src="https://img.icons8.com/pastel-glyph/64/search--v2.png"
+                alt="search--v2"
+              />
+            </Button>
+          </form>
+        </div>
+        <div
+          className="overflow-auto pt-0 pb-4 grid justify-items-center gap-6 grid-cols-2 sm:grid-cols-3 sm:gap-y-10 md:grid-cols-4 xl:grid-cols-5 justify-center"
+          style={{ minHeight: "600px" }}
+        >
+          {searchedRecipe.map((recipe, index) => {
+            return <RecipeCard key={index} data={recipe} Loading={isLoading} />;
+          })}
+        </div>
+      </section>
       <RandomRecipes />
 
       {/* Categories of recipes Section */}
@@ -124,7 +179,7 @@ function MainBody() {
           ))}
         </div>
       </section>
-
+      {/* Recipes by Initial Section */}
       <section
         className="py-4 px-1 sm:px-2 lg:px-0 my-4 mx-3 sm:mx-6 md:mx-8 lg:mx-2 bg-teal-400 rounded-xl "
         id="byinitial"
