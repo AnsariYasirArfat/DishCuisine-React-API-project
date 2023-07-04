@@ -21,12 +21,10 @@ function RandomRecipes() {
         }
         console.log(recipes);
         setPopularRecipes(recipes);
-        const timeout = setTimeout(() => {
-          setIsLoading(false);
-        }, 500);
-        return () => clearTimeout(timeout);
       } catch (error) {
         console.error("Error fetching recipes:", error);
+      } finally {
+        setIsLoading(false);
       }
     }
     getRandomRecipes();

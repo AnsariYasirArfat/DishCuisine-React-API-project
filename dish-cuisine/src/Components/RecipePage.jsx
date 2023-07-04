@@ -146,7 +146,7 @@ function ProductPage() {
     <>
       <Card className="flex-col items-center justify-center lg:flex-row lg:items-start m-2">
         <div>
-          <Typography className="text-xl md:text-2xl font-extrabold my-2  lg:my-8 text-center">
+          <Typography className="text-xl md:text-2xl font-extrabold my-2 p-2 lg:my-8 text-center">
             {RecipesDetails.strMeal}
           </Typography>
           <div className="flex justify-evenly mb-2">

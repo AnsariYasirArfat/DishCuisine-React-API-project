@@ -7,6 +7,7 @@ function Footer() {
     {
       title: "Home ",
       items: [
+        { label: "Search Meals", path: "#searchrecipe" },
         { label: "Random Recipes", path: "#latest" },
         { label: "Categories", path: "#categories" },
         { label: "By Initials", path: "#byinitial" },

@@ -10,7 +10,7 @@ import {
 } from "@material-tailwind/react";
 
 function InitialsList() {
-  const [Initials, setInitials] = useState("s");
+  const [Initials, setInitials] = useState("v");
   const [InitialsRecipes, setInitialsRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,8 +19,8 @@ function InitialsList() {
   }, []);
   useEffect(() => {
     async function getInitialsRecipes() {
+      setIsLoading(true);
       try {
-        setIsLoading(true);
         const InitialsList = await axios.get(
           `https://www.themealdb.com/api/json/v1/1/search.php?f=${Initials}`
         );
@@ -29,7 +29,10 @@ function InitialsList() {
         } else {
           const filteredRecipesList = InitialsList.data.meals.filter(
             (recipe) =>
-              recipe.strCategory !== "Pork" && recipe.strCategory !== "Beef"
+              recipe.strCategory !== "Pork" &&
+              recipe.strCategory !== "Beef" &&
+              !recipe.strMeal.includes("Pork") &&
+              !recipe.strMeal.includes("Beef")
           );
 
           console.log("Without Filtered data:", InitialsList.data.meals);
@@ -186,7 +189,7 @@ function InitialsList() {
     setInitials(label || value);
   };
   return (
-    <Tabs id="custom-animation" value="s" className="flex flex-col py-4 px-0">
+    <Tabs id="custom-animation" value="v" className="flex flex-col py-4 px-0">
       <h1 className="pb-5 lg:pb-10 text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl  font-bold text-center text-teal-50">
         Search your recipes by Initials
       </h1>

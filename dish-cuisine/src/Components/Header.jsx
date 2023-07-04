@@ -20,6 +20,10 @@ import mainLogo from "../Assets/mainLogo.png";
 // nav list menu
 const navListMenuItems = [
   {
+    title: "Search Meals",
+    path: "#searchrecipe",
+  },
+  {
     title: "Random Recipes",
     path: "#latest",
   },
@@ -28,7 +32,7 @@ const navListMenuItems = [
     path: "#categories",
   },
   {
-    title: "By initial",
+    title: "By initials",
     path: "#byinitial",
   },
 ];
@@ -42,7 +46,7 @@ function NavListMenu() {
   };
 
   const renderItems = navListMenuItems.map(({ title, path }) => (
-    <a href={`${path}`} key={title}>
+    <a href={`/${path}`} key={title}>
       <MenuItem>
         <Typography
           variant="h6"
