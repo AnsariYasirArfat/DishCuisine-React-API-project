@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import RecipeCardLoader from "./RecipeCardLoader";
+import { useState, useEffect, useContext } from "react";
+import { FavoriteRecipesContext } from "../main";
+import redHeart from "../Assets/redHeart.png";
+import whiteHeart from "../Assets/whiteHeart.png";
 
 import {
   Card,
@@ -12,6 +16,39 @@ import {
 } from "@material-tailwind/react";
 
 function RecipeCard({ data, Loading }) {
+  const { favoriteRecipes, updatedFavoriteRecipes } = useContext(
+    FavoriteRecipesContext
+  );
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  useEffect(() => {
+    if (favoriteRecipes.length > 0) {
+      const isFavorite = favoriteRecipes.some(
+        (recipe) => recipe.idMeal === data.idMeal
+      );
+      // console.log("isFavorite", isFavorite);
+      setIsWishlisted(isFavorite);
+    }
+  }, [favoriteRecipes, data]);
+
+  const toggleFavorite = () => {
+    if (isWishlisted) {
+      setIsWishlisted(false);
+
+      const removedFavoriteRecipes = favoriteRecipes.filter(
+        (recipe) => recipe.idMeal !== data.idMeal
+      );
+
+      updatedFavoriteRecipes(removedFavoriteRecipes);
+      // console.log("on remove fav", removedFavoriteRecipes);
+    } else {
+      const addedFavoriteRecipes = [...favoriteRecipes, data];
+      updatedFavoriteRecipes(addedFavoriteRecipes);
+      setIsWishlisted(true);
+      // console.log("on add fav", addedFavoriteRecipes);
+    }
+  };
+
   if (Loading) {
     return <RecipeCardLoader />;
   } else {
@@ -36,37 +73,42 @@ function RecipeCard({ data, Loading }) {
             </NavLink>
           </CardHeader>
           <CardBody className="p-0 lg:px-5 text-center">
-            <Typography
-              color="teal"
-              className="text-xs md:text-sm lg:text-[15px] 2xl:text-base font-semibold capitalize"
-            >
-              {data.strMeal}
-            </Typography>
-          </CardBody>
-          <CardFooter className="p-1 lg:p-2">
             <NavLink
               to={{
                 pathname: "/recipepage",
                 search: `?value=${data.idMeal}`,
               }}
             >
-              <Button
-                fullWidth={true}
-                className="text-[10px] md:text-[11px] lg:text-xs rounded-xl 2xl:text-sm p-0 bg-teal-100 text-teal-600 hover:shadow-none"
+              <Typography
+                color="teal"
+                className="text-xs md:text-sm lg:text-[15px] 2xl:text-base font-semibold capitalize p-1"
               >
-                <div className="flex items-center justify-between p-2">
-                  <Typography className="text-xs md:text-sm lg:text-base font-semibold text-teal-400 normal-case">
-                    Category:
-                  </Typography>
-                  <p
-                    color="teal"
-                    className="text-[10.5px] md:text-xs lg:text-sm font-medium capitalize underline"
-                  >
-                    {data.strCategory}
-                  </p>
-                </div>
-              </Button>
+                {data.strMeal}
+              </Typography>
             </NavLink>
+          </CardBody>
+          <CardFooter className="p-1 lg:p-2">
+            <Button
+              fullWidth={true}
+              className="text-[10px] md:text-[11px] lg:text-xs rounded-xl 2xl:text-sm p-0 bg-teal-100 text-teal-600 hover:shadow-none"
+            >
+              <div className="flex items-center justify-between p-2">
+                <Typography className="text-xs md:text-sm lg:text-base font-semibold text-teal-400 normal-case">
+                  Category:
+                  <span className="ms-1 md:ms-2 text-[10.5px] md:text-xs lg:text-sm font-medium capitalize underline">
+                    {data.strCategory}
+                  </span>
+                </Typography>
+
+                <button onClick={toggleFavorite}>
+                  {isWishlisted ? (
+                    <img className="w-5 xl:w-7 ms-2" src={redHeart} alt="" />
+                  ) : (
+                    <img className="w-5 xl:w-7 ms-2" src={whiteHeart} alt="" />
+                  )}
+                </button>
+              </div>
+            </Button>
           </CardFooter>
         </Card>
       </>
