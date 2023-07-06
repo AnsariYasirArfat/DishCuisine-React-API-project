@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { FavoriteRecipesContext } from "../main";
 
 import {
   Collapse,
@@ -158,15 +159,16 @@ function NavList() {
 }
 
 function WishList() {
+  const { favoriteRecipes } = useContext(FavoriteRecipesContext);
   return (
     <Typography
       as={NavLink}
-      to={`/WishList`}
+      to={`/favourite`}
       variant="small"
       color="teal"
       className="ml-auto"
     >
-      <Badge content="0" color="teal">
+      <Badge content={favoriteRecipes.length} color="yellow">
         <Button
           className="flex items-center justify-between font-bold text-[10px] sm:text-xs md:text-sm py-2 px-4 "
           color="green"
