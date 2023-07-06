@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { FavoriteRecipesContext } from "../main";
 
 import {
   Card,
@@ -10,7 +11,11 @@ import {
   Button,
 } from "@material-tailwind/react";
 
-function ProductPage() {
+function RecipePage() {
+  const { favoriteRecipes, updatedFavoriteRecipes } = useContext(
+    FavoriteRecipesContext
+  );
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -18,13 +23,12 @@ function ProductPage() {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const idFromQuery = query.get("value");
-  const [RecipesDetails, setRecipesDetails] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [RecipesDetails, setRecipesDetails] = useState({});
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   useEffect(() => {
     async function getCategoryRecipes() {
       try {
-        // setIsLoading(true);
         const recipeDetails = await axios.get(
           `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idFromQuery}`
         );
@@ -35,15 +39,7 @@ function ProductPage() {
           ...recipeDetails.data.meals[0],
           videoId: videoId,
         };
-
-        console.log(recipeDetails.data.meals[0]);
-        console.log(updatedRecipeDetails);
         setRecipesDetails(updatedRecipeDetails);
-
-        // const timeout = setTimeout(() => {
-        //   setIsLoading(false);
-        // }, 1000);
-        // return () => clearTimeout(timeout);
       } catch (error) {
         console.error("Error fetching recipes:", error);
       }
@@ -51,14 +47,35 @@ function ProductPage() {
     getCategoryRecipes();
   }, [idFromQuery]);
 
-  const [isWishlisted, setIsWishlisted] = useState(false);
-  const AddedToWishList = () => {
-    setIsWishlisted(true);
-  };
-  const RemoveFromWishList = () => {
-    setIsWishlisted(false);
+  useEffect(() => {
+    if (favoriteRecipes.length > 0) {
+      const isFavorite = favoriteRecipes.some(
+        (recipe) => recipe.idMeal === idFromQuery
+      );
+      // console.log("isFavorite", isFavorite);
+      setIsWishlisted(isFavorite);
+    }
+  }, [favoriteRecipes, idFromQuery]);
+
+  const toggleFavorite = () => {
+    if (isWishlisted) {
+      setIsWishlisted(false);
+
+      const removedFavoriteRecipes = favoriteRecipes.filter(
+        (recipe) => recipe.idMeal !== RecipesDetails.idMeal
+      );
+
+      updatedFavoriteRecipes(removedFavoriteRecipes);
+      // console.log("on remove fav", removedFavoriteRecipes);
+    } else {
+      const addedFavoriteRecipes = [...favoriteRecipes, RecipesDetails];
+      updatedFavoriteRecipes(addedFavoriteRecipes);
+      setIsWishlisted(true);
+      // console.log("on add fav", addedFavoriteRecipes);
+    }
   };
 
+  // console.log("Now list", favoriteRecipes);
   const ingredients = [
     {
       ingredient: RecipesDetails.strIngredient1,
@@ -141,11 +158,17 @@ function ProductPage() {
       quantity: RecipesDetails.strMeasure20,
     },
   ];
-
+  // if (!RecipesDetails) {
+  //   return (
+  //     <>
+  //       <h1>No data available for the recipes</h1>
+  //     </>
+  //   );
+  // }
   return (
     <>
-      <Card className="flex-col items-center justify-center lg:flex-row lg:items-start m-2">
-        <div>
+      <Card className="flex-col items-center justify-center lg:flex-row my-4 mx-2 sm:mx-4">
+        <div className="lg:mx-4">
           <Typography className="text-xl md:text-2xl font-extrabold my-2 p-2 lg:my-8 text-center">
             {RecipesDetails.strMeal}
           </Typography>
@@ -157,32 +180,41 @@ function ProductPage() {
               Country: {RecipesDetails.strArea}
             </Typography>
           </div>
-          <CardHeader shadow={false} floated={false} className="w-72 sm:w-80  ">
+          <CardHeader
+            shadow={false}
+            floated={false}
+            className="w-72 sm:w-80 mx-auto"
+          >
             <img
               src={RecipesDetails.strMealThumb}
               alt="image"
               className="w-full h-full object-center object-cover hover:scale-105 ease-in-out duration-500"
             />
           </CardHeader>
-          <div className=" my-4 xl:mt-10 flex justify-center">
+          <div className="mx-auto my-4 xl:mt-10 py-3 md:py-4 flex flex-col items-center justify-center bg-teal-300 w-72 sm:w-80 rounded-xl ">
             {isWishlisted ? (
-              <Button
-                onClick={RemoveFromWishList}
-                className="w-40 md:w-48 xl:w-52 h-10 text-[9px] md:text-[11px] xl:text-xs md:py-3 bg-red-50 text-red-500 shadow-none"
-              >
-                Remove from WishList
-              </Button>
+              <p className="text-base md:text-lg xl:text-xl text-center font-bold text-teal-50">
+                You&#39;ve Already Saved This <br /> Delight to Your Favorites!
+              </p>
             ) : (
-              <Button
-                onClick={AddedToWishList}
-                className="w-40 md:w-48 xl:w-52 h-10 text-[10px] md:text-[11px] xl:text-xs  md:py-3 bg-teal-100 text-teal-800 shadow-none"
-              >
-                Add to WishList
-              </Button>
+              <p className="text-base md:text-lg  xl:text-xl text-center font-bold text-teal-50">
+                Save The Recipe to <br /> Your Favorites Collection
+              </p>
             )}
+
+            <Button
+              onClick={toggleFavorite}
+              className={`mt-2 w-36 md:w-44 xl:w-52 h-10 md:text-sm  md:h-12 ${
+                isWishlisted
+                  ? "text-xs bg-red-50 text-red-500"
+                  : "text-xs  bg-teal-100 text-teal-900"
+              } shadow-none capitalize`}
+            >
+              {isWishlisted ? "Remove Recipe" : "Save Recipe"}
+            </Button>
           </div>
         </div>
-        <CardBody className="p-2 w-full ">
+        <CardBody className="p-2 w-full lg:self-center">
           <div className="my-6">
             <h1 className="text-lg lg:text-xl font-bold text-center mb-4">
               Recipe&apos;s Ingredients:
@@ -190,7 +222,7 @@ function ProductPage() {
             <div className="grid justify-items-center gap-4 grid-cols-2 sm:grid-cols-3 sm:gap-y-8 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  2xl:gap-y-10 justify-center">
               {ingredients.map(({ ingredient, quantity }, index) => {
                 if (!ingredient) {
-                  return null; // Skip rendering if ingredient is empty
+                  return null;
                 }
                 return (
                   <figure
@@ -198,12 +230,12 @@ function ProductPage() {
                     className="rounded-2xl relative w-36 h-36 md:w-40 md:h-40  xl:w-44 xl:-44 bg-opacity-50 bg-green-300 hover:scale-[1.01]"
                   >
                     <img
-                      className="rounded-2xl p-2 h-full w-full m-auto object-center object-cover shadow-xl shadow-teal-900/50 opacity-90 hover:opacity-100"
+                      className="rounded-2xl p-4 h-full w-full m-auto object-center object-cover shadow-xl shadow-teal-900/50 opacity-90 hover:opacity-100"
                       src={`https://www.themealdb.com/images/ingredients/${ingredient}.png`}
                       alt=""
                     />
                     <figcaption className=" flex w-11/12 p-2 lg:p-2 absolute bottom-2 left-2/4  -translate-x-2/4 justify-between items-center rounded-xl border border-teal-800 bg-green-200 bg-opacity-50 hover:bg-opacity-100">
-                      <Typography className="text-xs lg:text-sm xl:text-lg font-bold text-teal-800 w-1/2">
+                      <Typography className="text-xs lg:text-sm xl:text-base font-bold text-teal-800 w-1/2">
                         {ingredient}
                       </Typography>
                       <Typography className="text-[10px] lg:text-sx  xl:text-sm font-semibold text-teal-600 w-1/2 text-end">
@@ -217,7 +249,7 @@ function ProductPage() {
           </div>
         </CardBody>
       </Card>
-      <Card className="my-4 mx-2">
+      <Card className="my-4 mx-2 sm:mx-4 ">
         <CardBody shadow={false} floated={false}>
           <div className="">
             <h1 className="text-lg lg:text-xl font-bold mb-2 ">
@@ -229,7 +261,7 @@ function ProductPage() {
           </div>
         </CardBody>
       </Card>
-      <Card className="my-4 mx-2">
+      <Card className="my-4 mx-2 sm:mx-4 ">
         <CardHeader shadow={false} floated={false} className="">
           <h1 className="text-center font-semibold">Watch the recipe here:</h1>
         </CardHeader>
@@ -243,7 +275,7 @@ function ProductPage() {
             src={`https://www.youtube.com/embed/${RecipesDetails.videoId}`}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </CardBody>
       </Card>
@@ -251,4 +283,4 @@ function ProductPage() {
   );
 }
 
-export default ProductPage;
+export default RecipePage;
