@@ -14,9 +14,9 @@ function InitialsList() {
   const [InitialsRecipes, setInitialsRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
   useEffect(() => {
     async function getInitialsRecipes() {
       setIsLoading(true);

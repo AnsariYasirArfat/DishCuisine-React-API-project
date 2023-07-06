@@ -10,13 +10,16 @@ import {
 } from "@material-tailwind/react";
 
 function CountryList() {
+  // To Scroll to the Top of Page
+  useEffect(() => {
+    const componentsElement = document.getElementById("components");
+    componentsElement.scrollTop = 0;
+  }, []);
+
   const [Country, setCountry] = useState("indian");
   const [CountryRecipes, setCountryRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   useEffect(() => {
     async function getCountryRecipes() {
       try {
@@ -34,8 +37,8 @@ function CountryList() {
             !recipe.strMeal.includes("Pork") && !recipe.strMeal.includes("Beef")
         );
 
-        console.log("Without Filtered data:", recipes);
-        console.log("Filtered data:", filteredRecipesList);
+        // console.log("Without Filtered data:", recipes);
+        // console.log("Filtered data:", filteredRecipesList);
         setCountryRecipes(filteredRecipesList);
 
         const timeout = setTimeout(() => {

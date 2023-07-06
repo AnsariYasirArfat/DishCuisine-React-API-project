@@ -17,7 +17,8 @@ function RecipePage() {
   );
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const componentsElement = document.getElementById("components");
+    componentsElement.scrollTop = 0;
   }, []);
 
   const location = useLocation();

@@ -1,9 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { FavoriteRecipesContext } from "../main";
 import RecipeCard from "./RecipeCard";
 
 function FavouriteRecipes() {
+  useEffect(() => {
+    const componentsElement = document.getElementById("components");
+    componentsElement.scrollTop = 0;
+  }, []);
   const { favoriteRecipes } = useContext(FavoriteRecipesContext);
 
   return (

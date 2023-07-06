@@ -5,17 +5,9 @@ import mainLogo from "../Assets/mainLogo.png";
 function Footer() {
   const LINKS = [
     {
-      title: "Home ",
+      title: "Pages ",
       items: [
-        { label: "Search Meals", path: "#searchrecipe" },
-        { label: "Random Recipes", path: "#latest" },
-        { label: "Categories", path: "#categories" },
-        { label: "By Initials", path: "#byinitial" },
-      ],
-    },
-    {
-      title: "Company",
-      items: [
+        { label: "Home", path: "" },
         { label: "Category", path: "category" },
         { label: "Regional Recipes", path: "area" },
       ],
@@ -32,7 +24,7 @@ function Footer() {
               <div>
                 <NavLink
                   to="/"
-                  className="cursor-pointer  flex items-center w-fit"
+                  className="cursor-pointer flex items-center w-fit"
                 >
                   <img
                     src={mainLogo}
@@ -58,13 +50,13 @@ function Footer() {
                   </Typography>
                   {items.map((item) => (
                     <li key={item.label}>
-                      <a
-                        href={`/${item.path}`}
+                      <NavLink
+                        to={`/${item.path}`}
                         color="gray"
                         className="w-fit py-1.5 sm:font-semibold transition-colors text-teal-200 hover:text-teal-900 hover:underline "
                       >
-                        {item.label}
-                      </a>
+                        <p>{item.label}</p>
+                      </NavLink>
                     </li>
                   ))}
                 </ul>

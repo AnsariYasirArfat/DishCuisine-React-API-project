@@ -9,14 +9,19 @@ import Banner from "../Assets/banner.jpg";
 import RecipeBook from "../Assets/RecipeBook.jpg";
 
 function MainBody() {
-  const [Categories, setCategories] = useState([]);
+  // To Scroll to the Top of Page
+  useEffect(() => {
+    const componentsElement = document.getElementById("components");
+    componentsElement.scrollTop = 0;
+  }, []);
 
+  const [Categories, setCategories] = useState([]);
   const [input, setInput] = useState("");
   const [searchedRecipe, setSearchedRecipe] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [userSearched, setUserSearched] = useState("");
+
   useEffect(() => {
-    window.scrollTo(0, 0);
     async function getCategoryOfRecipeList() {
       try {
         const CategoryList = await axios.get(
@@ -31,14 +36,14 @@ function MainBody() {
             category.strCategory !== "Vegan" &&
             category.strCategory !== "Goat"
         );
-        console.log(filteredCategories);
+        // console.log(filteredCategories);
         setCategories(filteredCategories);
         setIsLoading(true);
 
         const List = await axios.get(
           `https://www.themealdb.com/api/json/v1/1/search.php?s=cakes`
         );
-        console;
+
         const defualtList = List.data.meals.filter(
           (recipe) =>
             recipe.strCategory !== "Pork" &&
@@ -47,7 +52,7 @@ function MainBody() {
             !recipe.strMeal.includes("Beef")
         );
         setSearchedRecipe(defualtList);
-        console.log("Default meal", defualtList);
+        // console.log("Default meal", defualtList);
 
         const timeout = setTimeout(() => {
           setIsLoading(false);
@@ -92,7 +97,6 @@ function MainBody() {
       }
     } catch (error) {
       console.error("Error fetching recipes:", error);
-      // Handle the error, e.g., display an error message to the user
     } finally {
       setIsLoading(false);
     }

@@ -11,16 +11,19 @@ import {
 } from "@material-tailwind/react";
 
 function CategoryList() {
+  // To Scroll to the Top of Page
+  useEffect(() => {
+    const componentsElement = document.getElementById("components");
+    componentsElement.scrollTop = 0;
+  }, []);
+
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const valueFromQuery = query.get("value");
   const [Category, setCategory] = useState(valueFromQuery || "breakfast");
   const [CategoryRecipes, setCategoryRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(valueFromQuery);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // console.log(valueFromQuery);
   useEffect(() => {
     async function getCategoryRecipes() {
       try {
@@ -32,7 +35,7 @@ function CategoryList() {
           ...recipe,
           strCategory: Category,
         }));
-        console.log(recipes);
+        // console.log(recipes);
         setCategoryRecipes(recipes);
 
         const timeout = setTimeout(() => {
