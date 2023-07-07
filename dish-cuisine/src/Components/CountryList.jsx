@@ -166,17 +166,17 @@ function CountryList() {
         value="indian"
         className="flex flex-col py-4 "
       >
-        <div className=" bg-teal-200 rounded-lg mx-4 mb-4 shadow-lg shadow-teal-900/60">
-          <h1 className="pt-2 text-center text-base lg:text-xl text-teal-700 font-bold">
+        <div className=" bg-lime-400 rounded-lg mx-4 mb-4 shadow-lg shadow-lime-900/60">
+          <h1 className="pt-2 xl:pt-4 text-center text-base lg:text-xl text-green-700 font-bold">
             Countries:
           </h1>
-          <TabsHeader className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-10 lg:grid-cols-10  p-1.5 m-2 lg:m-4 md:p-2.5 bg-teal-300">
+          <TabsHeader className="bg-[#B3FF67] bg-opacity-60  grid grid-cols-3 sm:grid-cols-4 md:grid-cols-10 lg:grid-cols-10  p-1.5 m-2 lg:m-4 md:p-2.5">
             {data.map(({ label, value }) => (
               <Tab
                 key={value}
                 value={value}
                 onClick={() => handleTabClick(value, label)}
-                className="text-xs lg:text-sm font-bold md:py-2 md:my-1"
+                className="text-green-900 text-xs lg:text-sm font-bold md:py-2 md:my-1"
               >
                 {label}
               </Tab>
@@ -192,7 +192,7 @@ function CountryList() {
           }}
         >
           <div>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-bold text-center p-8 text-teal-800 capitalize">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center p-8 text-green-400 capitalize">
               {CountryRecipes.length} {Country} Recipes:
             </h1>
           </div>
