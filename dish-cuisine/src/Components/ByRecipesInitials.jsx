@@ -190,17 +190,17 @@ function InitialsList() {
   };
   return (
     <Tabs id="custom-animation" value="v" className="flex flex-col py-4 px-0">
-      <h1 className="pb-5 lg:pb-10 text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl  font-bold text-center text-teal-50">
+      <h1 className="pb-5 lg:pb-10 text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-center text-lime-800">
         Search your recipes by Initials
       </h1>
-      <div className=" bg-teal-200 rounded-lg mx-4 mb-4 shadow-lg shadow-teal-900/60">
-        <TabsHeader className="grid grid-cols-9 md:grid-cols-12 lg:flex lg:flew-wrap  p-1.5 m-2 lg:m-4 md:p-2.5 bg-teal-300">
+      <div className=" bg-lime-400 rounded-lg mx-4 mb-4 shadow-lg shadow-green-900/60">
+        <TabsHeader className="grid grid-cols-9 md:grid-cols-12 lg:flex lg:flew-wrap  p-1.5 m-2 lg:m-4 md:p-2.5 bg-[#B3FF67] bg-opacity-40">
           {data.map(({ label, value }) => (
             <Tab
               key={value}
               value={value}
               onClick={() => handleTabClick(value, label)}
-              className="text-xs lg:text-sm font-bold md:py-2 md:my-1"
+              className="text-xs lg:text-sm font-bold md:py-2 md:my-1 text-green-900"
             >
               {label}
             </Tab>
@@ -217,9 +217,10 @@ function InitialsList() {
       >
         <div>
           {InitialsRecipes.length > 0 && (
-            <h1 className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl font-bold text-center p-8 text-teal-50 capitalize">
+            <h1 className="text-xl md:text-2xl lg:text-3xl 2xl:text-4xl font-bold text-center p-8 text-green-500 capitalize">
               &quot;Delight in {InitialsRecipes.length} Recipes: Starting with
-              <span className=""> {Initials}</span>&quot;
+              <span className="uppercase  text-lime-900"> {Initials}</span>
+              &quot;
             </h1>
           )}
         </div>
@@ -240,9 +241,10 @@ function InitialsList() {
                 <RecipeCard key={index} data={recipe} Loading={isLoading} />
               ))
             ) : (
-              <p className="text-center text-xl md:text-2xl lg:text-3xl font-bold mt-24 lg:mt-32 text-teal-50">
-                Sorry, there are currently no recipes starting with the letter
-                &quot;{Initials}
+              <p className="text-center text-xl md:text-2xl lg:text-3xl font-bold mt-24 lg:mt-32 text-green-500">
+                &quot;Sorry, there are currently no recipes starting with the
+                letter
+                <span className="uppercase  text-lime-900"> {Initials}</span>
                 &quot;.
               </p>
             )}
