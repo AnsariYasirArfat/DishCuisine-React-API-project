@@ -2,12 +2,12 @@ import ContentLoader from "react-content-loader";
 
 const RecipeCardLoader = () => (
   <ContentLoader
-    speed={0.5}
+    speed={0.6}
     // backgroundColor="#052e16"
     // foregroundColor="#052e16"
-    backgroundColor="#dcfce7"
-    foregroundColor="#86efac"
-    className="flex flex-col justify-between bg-teal-50 rounded-2xl w-40 h-64 md:w-44 md:h-72 lg:w-56 lg:h-80 2xl:w-64 2xl:h-[368px] shadow-xl shadow-teal-900/60 "
+    backgroundColor="#ecfccb"
+    foregroundColor="#84cc1680"
+    className="flex flex-col justify-between bg-lime-50 rounded-2xl w-40 h-64 md:w-44 md:h-72 lg:w-56 lg:h-80 2xl:w-64 2xl:h-[368px] shadow-xl shadow-green-900/60 "
   >
     <rect
       y="2"

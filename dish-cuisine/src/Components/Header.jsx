@@ -26,7 +26,7 @@ const navListMenuItems = [
   },
   {
     title: "Random Recipes",
-    path: "#latest",
+    path: "#random",
   },
   {
     title: "Categories",
@@ -90,7 +90,7 @@ function NavListMenu() {
         </MenuHandler>
         <MenuList
           {...triggers}
-          className="hidden w-[36rem] grid-cols-7 gap-3 bg-[#FFFE8E] lg:grid"
+          className="hidden w-[36rem] grid-cols-7 gap-3 bg-[#B3FF67] bg-opacity-90 lg:grid"
         >
           <Card
             color="green"
@@ -165,13 +165,13 @@ function WishList() {
       as={NavLink}
       to={`/favourite`}
       variant="small"
-      className="ml-auto"
+      className="ml-auto "
     >
       <Badge
         content={favoriteRecipes.length}
         className="bg-[#fc3d3d] text-white font-semibold"
       >
-        <Button className="bg-[#B3FF67] text-green-600 flex items-center justify-between font-bold text-[10px] sm:text-xs md:text-sm py-2 px-4 ">
+        <Button className="bg-[#B3FF67] bg-opacity-50 text-green-600 flex items-center justify-between font-bold text-[10px] sm:text-xs md:text-sm py-2 px-4 ">
           My Favorites
         </Button>
       </Badge>
@@ -208,7 +208,7 @@ function Header() {
           to="/"
           onClick={totheTop}
           color="green"
-          className="py-1.5 flex flex-col md:flex-row justify-center items-center bg-[#B3FF67] bg-opacity-50 px-4 rounded-xl shadow-xl shadow-green-900/50 "
+          className="ml-2 py-1.5 flex flex-col md:flex-row justify-center items-center bg-[#B3FF67] bg-opacity-50 px-4 rounded-xl shadow-xl shadow-green-900/50 "
         >
           <h1 className="text-center text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-green-600 md:mr-4 ">
             Dish Cuisine

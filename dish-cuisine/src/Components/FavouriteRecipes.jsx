@@ -13,12 +13,12 @@ function FavouriteRecipes() {
   return (
     <div>
       {favoriteRecipes.length > 0 ? (
-        <h1 className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-bold text-center p-8 text-teal-800 capitalize">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center p-8 text-green-400 capitalize">
           Explore Your Collection of {favoriteRecipes.length} Personal Favorite
           {favoriteRecipes.length > 1 ? "s" : ""}.
         </h1>
       ) : (
-        <h1 className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-bold text-center p-8 text-teal-800 capitalize">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center p-8 text-red-400 capitalize">
           No Recipes Yet? Start Adding Delicious Recipes to Your Favorites!
         </h1>
       )}

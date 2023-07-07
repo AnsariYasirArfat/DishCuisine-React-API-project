@@ -9,9 +9,12 @@ function App() {
   }, []);
   return (
     <>
-      <div className="bg-white sm:bg-red-200 md:bg-green-300 lg:bg-yellow-200 xl:bg-blue-400 2xl:bg-teal-100">
+      <div className="">
         <Header />
-        <div id="components" className="lg:overflow-auto lg:h-[88vh]">
+        <div
+          id="components"
+          className="lg:overflow-auto lg:h-[84vh] bg-[#FAFAD5] lg:bg-[#fdfca8]"
+        >
           <Outlet />
           <Footer />
         </div>
