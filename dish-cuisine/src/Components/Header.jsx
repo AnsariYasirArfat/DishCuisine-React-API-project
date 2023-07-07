@@ -48,10 +48,10 @@ function NavListMenu() {
 
   const renderItems = navListMenuItems.map(({ title, path }) => (
     <a href={`/${path}`} key={title}>
-      <MenuItem>
+      <MenuItem className="bg-[#FFFE8E] hover:bg-[#FFFE8E]">
         <Typography
           variant="h6"
-          className="text-teal-700 bg-teal-50 mb-1 p-2 rounded-lg"
+          className="text-green-600 bg-[#FFFE8E] mb-1 p-2 rounded-lg hover:bg-[#B3FF67] hover:text-green"
         >
           {title}
         </Typography>
@@ -71,7 +71,7 @@ function NavListMenu() {
           >
             <MenuItem
               {...triggers}
-              className="hidden items-center gap-2 text-teal-600 lg:flex font-bold text-base lg:text-xl"
+              className="hidden items-center gap-2 text-green-600 lg:flex font-bold text-base lg:text-xl hover:bg-[#B3FF67] hover:text-green"
             >
               <img
                 src="https://img.icons8.com/ios/50/home.png"
@@ -93,7 +93,7 @@ function NavListMenu() {
           className="hidden w-[36rem] grid-cols-7 gap-3  lg:grid"
         >
           <Card
-            color="teal"
+            color="green"
             shadow={false}
             variant="gradient"
             className="col-span-3 grid h-full w-full place-items-center"
@@ -106,11 +106,11 @@ function NavListMenu() {
         </MenuList>
       </Menu>
       <NavLink to="/">
-        <MenuItem className="flex items-center gap-2 text-teal-600 lg:hidden font-bold text-base lg:text-xl">
+        <MenuItem className="flex items-center gap-2 text-green-600 hover:bg-[#B3FF67] hover:text-green lg:hidden font-bold text-base lg:text-xl">
           <img
             src="https://img.icons8.com/ios/50/home.png"
             alt=""
-            className="h-[18px] w-[18px]"
+            className="h-[18px] w-[18px] "
           />
           Home
         </MenuItem>
@@ -144,10 +144,10 @@ function NavList() {
           as={NavLink}
           to={`/${path}`}
           variant="small"
-          color="teal"
-          className="font-normal"
+          color="green"
+          className="font-normal  "
         >
-          <MenuItem className="flex items-center gap-2 font-bold text-base lg:text-lg">
+          <MenuItem className="flex items-center gap-2 font-bold text-base lg:text-lg hover:bg-[#B3FF67] hover:text-green">
             <img src={imgIcon} alt="" className="h-[18px] w-[18px]" />
             {label}
           </MenuItem>
@@ -165,14 +165,13 @@ function WishList() {
       as={NavLink}
       to={`/favourite`}
       variant="small"
-      color="teal"
       className="ml-auto"
     >
-      <Badge content={favoriteRecipes.length} color="yellow">
-        <Button
-          className="flex items-center justify-between font-bold text-[10px] sm:text-xs md:text-sm py-2 px-4 "
-          color="green"
-        >
+      <Badge
+        content={favoriteRecipes.length}
+        className="bg-[#fc3d3d] text-white font-semibold"
+      >
+        <Button className="bg-[#B3FF67] text-green-600   flex items-center justify-between font-bold text-[10px] sm:text-xs md:text-sm py-2 px-4 ">
           My Favorites
         </Button>
       </Badge>
@@ -184,6 +183,10 @@ function Header() {
   const [isNavOpen, setIsNavOpen] = React.useState(false);
   const toggleIsNavOpen = () => setIsNavOpen((cur) => !cur);
 
+  const totheTop = () => {
+    const componentsElement = document.getElementById("components");
+    componentsElement.scrollTop = 0;
+  };
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -192,23 +195,25 @@ function Header() {
   }, []);
 
   return (
-    <nav id="header" className=" w-full px-4 md:px-10 bg-teal-50 text-red-600">
+    <nav id="header" className="w-full px-4 md:px-10 bg-[#FFFE8E]">
       <div
-        className="relative  flex justify-between items-center text-blue-gray-900"
-        style={{ height: "12vh" }}
+        className="relative flex justify-between items-center h-[12vh] lg:h-[16vh]"
+        // style={{ height: "16vh" }}
       >
         <Typography
           as={NavLink}
           to="/"
-          className="ml-2 cursor-pointer py-1.5 flex flex-col md:flex-row justify-center items-center"
+          onClick={totheTop}
+          color="green"
+          className="py-1.5 flex flex-col md:flex-row justify-center items-center bg-[#B3FF67] bg-opacity-50 px-4 rounded-xl shadow-xl shadow-green-900/50 "
         >
-          <h1 className="text-center text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-teal-800 md:mr-4 ">
+          <h1 className="text-center text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-green-600 md:mr-4 ">
             Dish Cuisine
           </h1>
           <img
             src={mainLogo}
             alt="mainLogo"
-            className="w-10 md:w-12 rounded-full "
+            className="w-12 md:w-14 rounded-lg"
           />
         </Typography>
         <div className="ml-auto hidden  lg:block">
@@ -217,7 +222,7 @@ function Header() {
         <WishList />
         <IconButton
           size="sm"
-          color="teal"
+          color="lime"
           variant="text"
           onClick={toggleIsNavOpen}
           className="ml-4 sm:ml-10 mr-4 lg:mr-0 lg:hidden lg:w-1"
