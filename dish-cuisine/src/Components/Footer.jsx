@@ -13,17 +13,21 @@ function Footer() {
       ],
     },
   ];
-
+  const gotheTop = () => {
+    const componentsElement = document.getElementById("components");
+    componentsElement.scrollTop = 0;
+  };
   const currentYear = new Date().getFullYear();
   return (
     <>
-      <footer className="relative w-full bg-teal-600 py-6">
+      <footer className="relative w-full bg-lime-800 py-6">
         <div className="mx-auto w-full max-w-7xl px-8">
           <div className="grid grid-cols-1 justify-between md:grid-cols-2">
             <Typography className="mb-6 ">
               <div>
                 <NavLink
                   to="/"
+                  onClick={gotheTop}
                   className="cursor-pointer flex items-center w-fit"
                 >
                   <img
@@ -31,7 +35,7 @@ function Footer() {
                     alt="mainLogo"
                     className="w-12 rounded-full mr-4 "
                   />
-                  <h1 className="text-xl font-bold text-teal-50">
+                  <h1 className="text-xl font-bold text-[#B3FF67]">
                     Dish Cuisine
                   </h1>
                 </NavLink>
@@ -43,8 +47,8 @@ function Footer() {
                 <ul key={title}>
                   <Typography
                     variant="small"
-                    color="teal"
-                    className="mb-3 text-teal-50 sm:font-bold"
+                    color="lime"
+                    className="mb-3 text-lime-300 sm:font-bold"
                   >
                     {title}
                   </Typography>
@@ -53,7 +57,8 @@ function Footer() {
                       <NavLink
                         to={`/${item.path}`}
                         color="gray"
-                        className="w-fit py-1.5 sm:font-semibold transition-colors text-teal-200 hover:text-teal-900 hover:underline "
+                        onClick={gotheTop}
+                        className="w-fit py-2 sm:font-semibold transition-colors text-green-50 hover:text-lime-400 hover:underline "
                       >
                         <p>{item.label}</p>
                       </NavLink>
@@ -63,18 +68,18 @@ function Footer() {
               ))}
             </div>
           </div>
-          <div className="mt-12 flex w-full flex-col items-center justify-center border-t border-teal-50 py-4 md:flex-row md:justify-between">
+          <div className="mt-12 flex w-full flex-col items-center justify-center border-t border-lime-50 py-4 md:flex-row md:justify-between">
             <Typography
               variant="small"
-              className="mb-4 text-center font-semibold text-teal-900 md:mb-0"
+              className="mb-4 text-center font-semibold text-lime-900 md:mb-0"
             >
               &copy; {currentYear}
-              <a href="/" className="hover:text-teal-100 hover:underline mx-1 ">
+              <a href="/" className="hover:text-lime-100 hover:underline mx-1 ">
                 Dish Cuisine Recipes
               </a>
               All Rights Reserved.
             </Typography>
-            <div className="flex gap-4 text-teal-900 sm:justify-center p-1 bg-teal-200 hover:bg-teal-50 rounded-md">
+            <div className="flex gap-4 text-lime-900 sm:justify-center p-1 bg-lime-200 hover:bg-lime-50 rounded-md">
               {/* GitHub */}
               <Typography
                 as="a"
@@ -114,6 +119,7 @@ function Footer() {
               <Typography
                 as="a"
                 href="#top"
+                onClick={gotheTop}
                 className="opacity-80 transition-opacity hover:opacity-100"
               >
                 <img
