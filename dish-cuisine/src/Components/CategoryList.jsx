@@ -103,7 +103,7 @@ function CategoryList() {
   return (
     <section id="top">
       <div>
-        <h1 className="text-2xl md:text-3xl lg:text-4xl 2xl:text-5xl font-bold text-center p-4 text-teal-800 capitalize">
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center py-4 xl:py-0 text-green-500 capitalize">
           {CategoryRecipes.length} {Category} Recipes:
         </h1>
       </div>
@@ -112,17 +112,17 @@ function CategoryList() {
         value={valueFromQuery || "breakfast"}
         className="flex flex-col xl:flex-row py-4 "
       >
-        <div className=" bg-teal-200 rounded-lg mx-4 mb-8 xl:mb-0 xl:mx-4 shadow-lg shadow-teal-900/60">
-          <h1 className="pt-2 text-center text-base lg:text-xl text-teal-700 font-bold">
-            Category:
+        <div className="bg-[#B3FF67] bg-opacity-60  rounded-lg mx-4 mb-8 xl:mb-0 xl:mx-4 shadow-lg shadow-lime-900/60">
+          <h1 className="pt-2 xl:pt-4 text-center text-base lg:text-xl text-lime-800 font-bold">
+            Categories:
           </h1>
-          <TabsHeader className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-1 p-1.5 m-2 lg:m-4 md:p-2.5 xl:w-36 2xl:w-44 bg-teal-300">
+          <TabsHeader className="bg-lime-400 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-1 p-1.5 m-2 lg:m-4 md:p-2.5 xl:w-36 2xl:w-44 ">
             {data.map(({ label, value }) => (
               <Tab
                 key={value}
                 value={value}
                 onClick={() => handleTabClick(value, label)}
-                className="text-xs lg:text-sm font-bold md:py-2 md:my-1"
+                className="text-xs lg:text-sm font-bold md:py-2 md:my-1 text-green-900"
               >
                 {label}
               </Tab>
@@ -142,8 +142,7 @@ function CategoryList() {
               id="ProductListWindow"
               key={value}
               value={value}
-              className="overflow-auto pt-0 pb-4 grid justify-items-center gap-6 grid-cols-2 sm:grid-cols-3 sm:gap-y-10 md:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4  justify-center"
-              style={{ height: "680px" }}
+              className="xl:overflow-auto xl:h-[800px] pt-0 pb-4 grid justify-items-center gap-6 grid-cols-2 sm:grid-cols-3 sm:gap-y-10 md:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-4  justify-center"
             >
               {Recipes.map((recipe, index) => {
                 return (
