@@ -33,10 +33,10 @@ function RandomRecipes() {
   return (
     <>
       <section
-        id="latest"
-        className="my-8 mx-3 sm:mx-6 md:mx-8 lg:mx-5 p-5 bg-teal-300 rounded-lg"
+        id="random"
+        className="my-8 xl:my-14 mx-3 sm:mx-6 md:mx-8 lg:mx-5 px-5  py-8 xl:py-14 bg-[#B3FF67] bg-opacity-70 rounded-xl shadow-xl shadow-green-900/60"
       >
-        <h1 className="pb-5 lg:pb-10 text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl  font-bold text-center text-teal-50">
+        <h1 className="pb-5 lg:pb-10 text-xl sm:text-2xl xl:text-3xl 2xl:text-4xl  font-bold text-center text-lime-800">
           Random Recipes
         </h1>
         <div className="pb-8 flex flex-wrap justify-center gap-4 sm:gap-9 md:gap-3 lg:gap-x-3 xl:gap-x-12 2xl:gap-x-16">
