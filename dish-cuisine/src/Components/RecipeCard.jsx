@@ -54,7 +54,7 @@ function RecipeCard({ data, Loading }) {
   } else {
     return (
       <>
-        <Card className="rounded-2xl bg-teal-50 hover:bg-white justify-between w-40 h-64 md:w-44 md:h-72 lg:w-56 lg:h-80 2xl:w-64 2xl:h-[368px] bg-opacity-[0.87] hover:bg-opacity-100 shadow-lg shadow-teal-900/60 hover:shadow-xl hover:shadow-teal-900/80 ">
+        <Card className="rounded-2xl text-green-800 hover:text-lime-800 bg-lime-700  hover:bg-[#b3ff67]  bg-opacity-60 hover:bg-opacity-100  justify-between w-40 h-64 md:w-44 md:h-72 lg:w-56 lg:h-80 2xl:w-64 2xl:h-[368px] shadow-lg shadow-lime-900/60 hover:shadow-xl hover:shadow-lime-900/80 ">
           <CardHeader
             shadow={true}
             floated={false}
@@ -68,7 +68,7 @@ function RecipeCard({ data, Loading }) {
             >
               <img
                 src={data.strMealThumb}
-                className="w-full h-full object-center object-cover shadow-2xl shadow-teal-950/50 hover:scale-105 ease-in-out duration-500 "
+                className="w-full h-full object-center object-cover shadow-2xl shadow-lime-950/50 hover:scale-105 ease-in-out duration-500 "
               />
             </NavLink>
           </CardHeader>
@@ -80,7 +80,7 @@ function RecipeCard({ data, Loading }) {
               }}
             >
               <Typography
-                color="teal"
+                // color="lime"
                 className="text-xs md:text-sm lg:text-[15px] 2xl:text-base font-semibold capitalize p-1"
               >
                 {data.strMeal}
@@ -90,10 +90,10 @@ function RecipeCard({ data, Loading }) {
           <CardFooter className="p-1 lg:p-2">
             <Button
               fullWidth={true}
-              className="text-[10px] md:text-[11px] lg:text-xs rounded-xl 2xl:text-sm p-0 bg-teal-100 text-teal-600 hover:shadow-none"
+              className="text-[10px] md:text-[11px] lg:text-xs rounded-xl 2xl:text-sm p-0 bg-lime-200 text-lime-800 hover:shadow-none"
             >
               <div className="flex items-center justify-between p-2">
-                <Typography className="text-xs md:text-sm lg:text-base font-semibold text-teal-400 normal-case">
+                <Typography className="text-xs md:text-sm lg:text-base font-semibold  normal-case">
                   Category:
                   <span className="ms-1 md:ms-2 text-[10.5px] md:text-xs lg:text-sm font-medium capitalize underline">
                     {data.strCategory}
