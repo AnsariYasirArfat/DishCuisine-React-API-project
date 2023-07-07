@@ -48,10 +48,10 @@ function NavListMenu() {
 
   const renderItems = navListMenuItems.map(({ title, path }) => (
     <a href={`/${path}`} key={title}>
-      <MenuItem className="bg-[#FFFE8E] hover:bg-[#FFFE8E]">
+      <MenuItem className="bg-[#FAFAD5] hover:bg-[#FAFAD5] lg:bg-[#fdfca8] lg:hover:bg-[#FFFE8E]">
         <Typography
           variant="h6"
-          className="text-green-600 bg-[#FFFE8E] mb-1 p-2 rounded-lg hover:bg-[#B3FF67] hover:text-green"
+          className="text-green-600 bg-[#FAFAD5]  lg:bg-[#fdfca8] mb-1 p-2 rounded-lg hover:bg-[#B3FF67] hover:text-green"
         >
           {title}
         </Typography>
@@ -90,17 +90,17 @@ function NavListMenu() {
         </MenuHandler>
         <MenuList
           {...triggers}
-          className="hidden w-[36rem] grid-cols-7 gap-3  lg:grid"
+          className="hidden w-[36rem] grid-cols-7 gap-3 bg-[#FFFE8E] lg:grid"
         >
           <Card
             color="green"
             shadow={false}
             variant="gradient"
-            className="col-span-3 grid h-full w-full place-items-center"
+            className="col-span-3 grid h-full w-full place-items-center "
           >
             <img src={mainLogo} className="h-28 w-28  rounded-full" />
           </Card>
-          <ul className="col-span-4 flex w-full flex-col gap-1">
+          <ul className="col-span-4 flex w-full flex-col gap-1 ">
             {renderItems}
           </ul>
         </MenuList>
@@ -171,7 +171,7 @@ function WishList() {
         content={favoriteRecipes.length}
         className="bg-[#fc3d3d] text-white font-semibold"
       >
-        <Button className="bg-[#B3FF67] text-green-600   flex items-center justify-between font-bold text-[10px] sm:text-xs md:text-sm py-2 px-4 ">
+        <Button className="bg-[#B3FF67] text-green-600 flex items-center justify-between font-bold text-[10px] sm:text-xs md:text-sm py-2 px-4 ">
           My Favorites
         </Button>
       </Badge>
@@ -195,7 +195,10 @@ function Header() {
   }, []);
 
   return (
-    <nav id="header" className="w-full px-4 md:px-10 bg-[#FFFE8E]">
+    <nav
+      id="header"
+      className="w-full px-4 md:px-10 bg-[#FAFAD5] lg:bg-[#fdfca8]"
+    >
       <div
         className="relative flex justify-between items-center h-[12vh] lg:h-[16vh]"
         // style={{ height: "16vh" }}
